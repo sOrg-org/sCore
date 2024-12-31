@@ -14,5 +14,6 @@ $(BIN_DIR)/%: $(SRC_DIR)/%.c
 clean:
 	rm -rf $(BIN_DIR)
 
-.PHONY: all clean
+install:
+	cp -r $(BIN_DIR)/* /usr/local/bin/
 
