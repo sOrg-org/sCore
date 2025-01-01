@@ -6,8 +6,7 @@ Modern, feature-rich alternative to coreutils
 
 sCore provides a bunch of commands to manage your system, including managing files and directories, providing system information, etc
 
-# Building
-
+# Installing
 ```bash
 git clone https://github.com/danilaxila3/sCore.git
 cd sCore

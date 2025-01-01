@@ -6,7 +6,7 @@
 int main(int argc, char *argv[]) {
   if (argc < 2) {
     printf("\e[34m\U0000f05a\e[0m Usage: fnew <file> <opts>\n"
-           "  Try \"fnew -h\" for help\n");
+           "  Run \"fnew -h\" for help\n");
     return 1;
   }
 
@@ -75,3 +75,4 @@ int main(int argc, char *argv[]) {
   printf("\e[32m\U000f0752\e[0m Created file %s\n", argv[1]);
   return 0;
 }
+
