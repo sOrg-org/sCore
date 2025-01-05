@@ -1,7 +1,7 @@
 SRC_DIR := src
 BIN_DIR := bin
 CC := gcc
-CFLAGS := -Wall -Wextra -g
+CFLAGS := -Wall -Wextra
 SOURCES := $(wildcard $(SRC_DIR)/*.c)
 EXECUTABLES := $(patsubst $(SRC_DIR)/%.c, $(BIN_DIR)/%, $(SOURCES))
 

@@ -5,14 +5,14 @@
 
 int main(int argc, char *argv[]) {
   if (argc < 2) {
-    printf("\e[34m\U0000f05a\e[0m Usage: fnew <file> <opts>\n"
+    printf("\e[34m\U0000f05a \e[0mUsage: fnew <file> <opts>\n"
            "  Run \"fnew -h\" for help\n");
     return 1;
   }
 
   if (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0) {
     printf(
-        "\e[34m\U0000f05a\e[0m Usage: fnew <file> <opts>\n"
+        "\e[34m\U0000f05a \e[0mUsage: fnew <file> <opts>\n"
         "  -h,  --help                Show this message\n"
         "  -nb, --nobackup            Do not backup the file if overwritten\n"
         "  -s,  --size <int>          Fill the file with <int> null bytes\n"
@@ -36,10 +36,10 @@ int main(int argc, char *argv[]) {
       snprintf(backup_name, sizeof(backup_name), "%s.bac", argv[1]);
 
       if (rename(argv[1], backup_name) == 0) {
-        printf("\e[32m\U000f0752\e[0m Backup of %s created as %s\n", argv[1],
+        printf("\e[32m\U000f0752 \e[0mBackup of %s created as %s\n", argv[1],
                backup_name);
       } else {
-        fprintf(stderr, "\e[31m\U000f0752\e[0m Failed to backup file %s\n",
+        fprintf(stderr, "\e[31m\U000f0752 \e[0mFailed to backup file %s\n",
                 argv[1]);
         return 1;
       }
@@ -49,7 +49,7 @@ int main(int argc, char *argv[]) {
   FILE *file = fopen(argv[1], "w");
 
   if (file == NULL) {
-    fprintf(stderr, "\e[31m\U000f0752\e[0m Failed to create file %s\n",
+    fprintf(stderr, "\e[31m\U000f0752 \e[0mFailed to create file %s\n",
             argv[1]);
     return 1;
   }
