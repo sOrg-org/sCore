@@ -10,8 +10,17 @@ int main(int argc, char *argv[]) {
 
   if (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0) {
     printf("\e[34m\U000f0dca \e[0mUsage: fnew <file> <opts>\n"
-           "  -h, --help         Show this message\n");
+           "  -h, --help    Show this message\n"
+           "  -n, --nums    Show line numbers\n");
     return 0;
+  }
+
+  int nums = 0;
+
+  for (int i = 1; i < argc; i++) {
+    if (strcmp(argv[i], "-n") == 0 || strcmp(argv[i], "--nums") == 0) {
+      nums = 1;
+    }
   }
 
   FILE *file;
@@ -32,10 +41,19 @@ int main(int argc, char *argv[]) {
 
   printf("\e[0m\n");
 
-  int ch = 0;
+  int ch;
+  int line = 1;
+
+  if (nums) {
+    printf("\e[90m%4d \e[0m", line++);
+  }
 
   while ((ch = fgetc(file)) != EOF) {
-    printf("%c", ch);
+    putchar(ch);
+
+    if (ch == '\n' && nums) {
+      printf("\e[90m%4d \e[0m", line++);
+    }
   }
 
   printf("\n\e[90m");
