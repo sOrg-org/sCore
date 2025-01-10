@@ -9,7 +9,7 @@ int main(int argc, char *argv[]) {
   }
 
   if (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0) {
-    printf("\e[34m\U000f0dca \e[0mUsage: fnew <file> <opts>\n"
+    printf("\e[34m\U000f0dca \e[0mUsage: fcontent <file> <opts>\n"
            "  -h, --help    Show this message\n"
            "  -n, --nums    Show line numbers\n");
     return 0;

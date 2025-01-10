@@ -75,4 +75,3 @@ int main(int argc, char *argv[]) {
   printf("\e[32m\U000f0752\e[0m Created file %s\n", argv[1]);
   return 0;
 }
-

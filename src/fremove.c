@@ -1,18 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 int main(int argc, char *argv[]) {
   if (argc < 2) {
-    printf("\e[34m\U0000f05a \e[0mUsage: fremove <file> <opts>\n"
-           "  Run \"fremove -h\" for help\n");
+    printf("\e[34m\U0000f05a \e[0mUsage: fremove <file>\n");
     return 1;
-  }
-
-  if (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0) {
-    printf("\e[34m\U0000f05a \e[0mUsage: fnew <file> <opts>\n"
-           "  -h, --help         Show this message\n");
-    return 0;
   }
 
   if (remove(argv[1]) == 0) {
@@ -24,4 +16,3 @@ int main(int argc, char *argv[]) {
 
   return 0;
 }
-
