@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 int main(int argc, char *argv[]) {
-  if (argc < 2) {
+  if (argc < 3) {
     printf("\e[34m\U0000f05a \e[0mUsage: fmove <path> <new_path>\n"
            "  Can also be used to rename files\n");
     return 1;
