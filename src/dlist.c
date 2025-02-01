@@ -68,7 +68,12 @@ int main(int argc, char *argv[]) {
       }
     }
 
-    if (show_mode == 1) {
+    if (show_mode == 0) {
+      if (entry->d_name[0] == '.') {
+        continue;
+      }
+      can_print = 1;
+    } else if (show_mode == 1) {
       if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) {
         continue;
       }
