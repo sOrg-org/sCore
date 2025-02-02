@@ -1,11 +1,11 @@
-SRC_DIR := src
-BIN_DIR := bin
 CC := gcc
 CFLAGS := -Wall -Wextra
-SOURCES := $(wildcard $(SRC_DIR)/*.c)
-EXECUTABLES := $(patsubst $(SRC_DIR)/%.c, $(BIN_DIR)/%, $(SOURCES))
+SRC_DIR := src
+BIN_DIR := bin
+SRCS := $(wildcard $(SRC_DIR)/*.c)
+PROGS := $(patsubst $(SRC_DIR)/%.c, $(BIN_DIR)/%, $(SRCS))
 
-all: $(EXECUTABLES)
+all: $(PROGS)
 
 $(BIN_DIR)/%: $(SRC_DIR)/%.c
 	@mkdir -p $(BIN_DIR)
