@@ -46,7 +46,7 @@ int delete_dir(const char *path) {
         }
       }
     } else {
-      fprintf(stderr, "\e[31m\U0000eec6 \e[0mError reading file %s for stat\n",
+      fprintf(stderr, "\e[31m\U0000eec6 \e[0mError getting stat of file %s\n",
               full_path);
       closedir(dir);
       return -1;
@@ -71,7 +71,7 @@ int main(int argc, char *argv[]) {
   }
 
   if (delete_dir(argv[1]) == 0) {
-    printf("\e[32m\U0000eec6 \e[0mDirectory %s removed successfully\n",
+    printf("\e[32m\U0000eec6 \e[0mRemoved directory %s\n",
            argv[1]);
   } else {
     fprintf(stderr, "\e[31m\U0000eec6 \e[0mError removing directory %s\n",
