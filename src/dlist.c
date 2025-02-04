@@ -4,6 +4,7 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <time.h>
 
 int main(int argc, char *argv[]) {
   DIR *dir;
@@ -86,11 +87,34 @@ int main(int argc, char *argv[]) {
       printf("\e[34m%s \e[0m%s", icon, entry->d_name);
 
       if (S_ISREG(entry_stat.st_mode)) {
-        for (int i = 0; i < 24 - (int)strlen(entry->d_name); i++) {
+        for (int i = 0; i < 16 - (int)strlen(entry->d_name); i++) {
           printf(" ");
         }
 
         printf("%.2f\e[90mkb\e[0m", (float)entry_stat.st_size / 1024);
+
+        char buf[64];
+        sprintf(buf, "%.2fkb", (float)entry_stat.st_size / 1024);
+
+        for (int i = 0; i < 16 - (int)strlen(buf); i++) {
+          printf(" ");
+        }
+
+        memset(buf, 0, 64);
+        strftime(buf, 64, "%Y.%m.%d %H:%M", localtime(&entry_stat.st_mtime));
+
+        printf("%s", buf);
+      }
+
+      if (S_ISDIR(entry_stat.st_mode)) {
+        for (int i = 0; i < 32 - (int)strlen(entry->d_name); i++) {
+          printf(" ");
+        }
+
+        char buf[64];
+        strftime(buf, 64, "%Y.%m.%d %H:%M", localtime(&entry_stat.st_mtime));
+
+        printf("%s", buf);
       }
 
       printf("\n");
