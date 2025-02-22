@@ -15,8 +15,7 @@ int main(int argc, char *argv[]) {
   }
 
   if (mkdir(argv[1], 0777) == 0) {
-    printf("\e[32m\U000f0257 \e[0mCreated directory %s\n",
-           argv[1]);
+    printf("\e[32m\U000f0257 \e[0mCreated directory %s\n", argv[1]);
   } else {
     fprintf(stderr, "\e[31m\U000f0257 \e[0mError creating directory %s\n",
             argv[1]);
