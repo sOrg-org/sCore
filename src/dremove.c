@@ -66,18 +66,21 @@ int delete_dir(const char *path) {
 
 int main(int argc, char *argv[]) {
   if (argc < 2) {
-    printf("\e[34m\U0000eec6 \e[0mUsage: dremove <dir>\n");
+    printf("\e[34m\U0000eec6 \e[0mUsage: dremove <dir1> <dir2> ...\n");
     return 1;
   }
 
-  if (delete_dir(argv[1]) == 0) {
-    printf("\e[32m\U0000eec6 \e[0mRemoved directory %s\n",
-           argv[1]);
-  } else {
-    fprintf(stderr, "\e[31m\U0000eec6 \e[0mError removing directory %s\n",
-            argv[1]);
-    return 1;
+  int exit_code = 0;
+
+  for (int i = 1; i < argc; i++) {
+    if (delete_dir(argv[i]) == 0) {
+      printf("\e[32m\U0000eec6 \e[0mRemoved directory %s\n", argv[i]);
+    } else {
+      fprintf(stderr, "\e[31m\U0000eec6 \e[0mError removing directory %s\n",
+              argv[i]);
+      exit_code = 1;
+    }
   }
 
-  return 0;
+  return exit_code;
 }
