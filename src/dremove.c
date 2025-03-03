@@ -81,8 +81,6 @@ int delete_dir(const char *path, int force) {
   }
 
   if (rmdir(path) != 0) {
-    fprintf(stderr, "\e[31m\U0000eec6 \e[0mError removing directory %s\n",
-            path);
     return -1;
   }
 
