@@ -16,4 +16,3 @@ clean:
 
 install:
 	cp -r $(BIN_DIR)/* /usr/local/bin/
-
