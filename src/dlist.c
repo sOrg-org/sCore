@@ -35,16 +35,6 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
-  printf("\e[32m\U000f178a \e[0mContent of %s:\n", dir_name);
-
-  printf("\e[90m");
-
-  for (int i = 0; i < 64; i++) {
-    printf("\u2014");
-  }
-
-  printf("\e[0m\n");
-
   while ((entry = readdir(dir)) != NULL) {
     char entry_full_name[512];
     sprintf(entry_full_name, "%s/%s", dir_name, entry->d_name);
@@ -70,64 +60,52 @@ int main(int argc, char *argv[]) {
     }
 
     if (show_mode == 0) {
-      if (entry->d_name[0] == '.') {
+      if (entry->d_name[0] == '.')
         continue;
-      }
       can_print = 1;
     } else if (show_mode == 1) {
-      if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) {
+      if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
         continue;
-      }
       can_print = 1;
     } else if (show_mode == 2) {
       can_print = 1;
     }
 
     if (can_print) {
-      printf("\e[34m%s \e[0m%s", icon, entry->d_name);
-
       if (S_ISREG(entry_stat.st_mode)) {
-        for (int i = 0; i < 16 - (int)strlen(entry->d_name); i++) {
-          printf(" ");
-        }
-
-        printf("%.2f\e[90mkb\e[0m", (float)entry_stat.st_size / 1024);
+        printf("\e[32m%.2f\e[90mKB\e[0m", (float)entry_stat.st_size / 1024);
 
         char buf[64];
-        sprintf(buf, "%.2fkb", (float)entry_stat.st_size / 1024);
+        snprintf(buf, 64, "%.2fKB", (float)entry_stat.st_size / 1024);
 
-        for (int i = 0; i < 16 - (int)strlen(buf); i++) {
+        for (int i = 0; i < 8 - (int)strlen(buf); i++) {
           printf(" ");
         }
 
         memset(buf, 0, 64);
-        strftime(buf, 64, "%Y.%m.%d %H:%M", localtime(&entry_stat.st_mtime));
+        strftime(buf, 64, "%a %H:%M", localtime(&entry_stat.st_mtime));
+        printf("%s ", buf);
 
-        printf("%s", buf);
+        printf("\e[34m%s \e[0m%s", icon, entry->d_name);
       }
 
       if (S_ISDIR(entry_stat.st_mode)) {
-        for (int i = 0; i < 32 - (int)strlen(entry->d_name); i++) {
+        printf("\e[90m-\e[0m");
+
+        for (int i = 0; i < 7; i++) {
           printf(" ");
         }
 
         char buf[64];
-        strftime(buf, 64, "%Y.%m.%d %H:%M", localtime(&entry_stat.st_mtime));
+        strftime(buf, 64, "%a %H:%M", localtime(&entry_stat.st_mtime));
+        printf("%s ", buf);
 
-        printf("%s", buf);
+        printf("\e[34m%s \e[0m%s", icon, entry->d_name);
       }
 
       printf("\n");
     }
   }
-
-  printf("\e[90m");
-
-  for (int i = 0; i < 64; i++) {
-    printf("\u2014");
-  }
-
-  printf("\e[0m\n");
 
   return 0;
 }
